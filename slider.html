@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <title>3 Column Layout</title>
+   <link rel="stylesheet" href="assets/css/sliderlayout.css">
+    <script src="assets/js/script.js"></script>
+    <script>
+   window.onload = function() {
+       let slides = [
+           {
+               title: "Hot Chocolate",
+               background: "assets/img/slide1.png" ,
+               link: "https://www.starbucks.com/menu/product/471/hot?parent=%2Fdrinks%2Fhot-drinks%2Fhot-chocolates"
+           }, {
+               title: "Pumpkin Spice Cream",
+               background: "assets/img/slide2.png",
+               link: "https://www.starbucks.com/menu/product/873068660/hot?parent=%2Fdrinks%2Fhot-drinks%2Fsteamers"
+           }, {
+               title: "Caramel Apple Spice",
+               background: "assets/img/slide3.png",
+               link: "hhttps://www.starbucks.com/menu/product/475/hot?parent=%2Fdrinks%2Fhot-drinks%2Fjuice"
+           }
+       ]
+       Slider.initSlider(slides);
+   };
+</script>
+
+</head>
+<body>
+<header class="header">
+    <img src="assets/img/logo1.png" width="50px">
+</header>
+<div class="container">
+   <main class="center column">
+       <article>
+           <h1>Hot Drinks</h1>
+           <p>            <div id="slider"></div>
+           <input id="butt1" class="buttons" type="button" value="Prev"/>
+           <input id="butt2" class="buttons" type="button" value="Next"/>
+           <input id="butt3" class="buttons" type="button" value="Hide"/>
+           <input id="butt4" class="buttons" type="button" value="Start"/>
+
+           <script>
+               index = 0;
+
+               function handler1() {
+                   Slider.prevSlide();
+               }
+               function handler2() {
+                   Slider.nextSlide();
+               }
+               function handler3(){
+                   if (index % 2 == 0) {
+                       document.getElementById("slider").style.display = "none";
+                       butt3.value = "Show";
+                   }
+                   else {
+                       document.getElementById("slider").style.display = 'block';
+                       butt3.value = "Hide";
+                   }
+                   index++;
+               }
+
+               butt1.addEventListener("click", handler1);
+               butt2.addEventListener("click", handler2);
+               butt3.addEventListener("click", handler3);
+               butt4.addEventListener('click', (event)=>{
+                   if (event.target.classList.contains('start')){
+                   event.target.innerHTML = 'Stop';
+                   butt4.value = 'Start';
+                   clearInterval(interval)
+               } else {
+                   event.target.innerHTML = 'Start';
+                   butt4.value = 'Stop';
+                   interval = setInterval(()=>{
+                       Slider.nextSlide();
+               },1000)
+               }
+               event.target.classList.toggle('start')
+               })
+
+           </script></p>
+           <p id = "masha">
+       </article>
+
+
+
+
+   </main>
+   <nav class="left column">
+       <h3>Menu</h3>
+       <ul>
+           <li><a href="index.html">Back</a></li>
+       </ul>
+       
+   </nav>
+   <div class="right column">
+       <h3>Right heading</h3>
+       <p></p>
+   </div>
+   <div class="push"></div>
+</div>
+<div class="footer-wrapper">
+   <footer class="footer"><img src="assets/img/logo1.png" width="50px"></footer>
+</div>
+</body>
+</html>
